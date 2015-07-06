@@ -27,7 +27,7 @@
 #include <vector>
 #include <stdexcept>
 #include <string.h>
-#include <magic.h>
+#include "/usr/local/Cellar/libmagic/5.22/include/magic.h"
 
 #define MAGIC_BUFFER_SIZE 8192
 

@@ -32,9 +32,9 @@
 #include <sstream>
 #include <iomanip>
 #include <assert.h>
-#include <unistd.h> 
+#include <unistd.h>
 
-#define JMTPFS_VERSION "0.4"
+#define JMTPFS_VERSION "0.5"
 
 using namespace std;
 
@@ -304,9 +304,6 @@ static struct fuse_operations jmtpfs_oper = {
 
 int main(int argc, char *argv[])
 {
-
-
-	LIBMTP_Init();
 	jmtpfs_oper.getattr = jmtpfs_getattr;
 	jmtpfs_oper.readdir = jmtpfs_readdir;
 	jmtpfs_oper.open = jmtpfs_open;
@@ -393,6 +390,7 @@ int main(int argc, char *argv[])
 
 	if (options.listStorage)
 	{
+		LIBMTP_Init();
 		std::unique_ptr<MtpDevice> device;
 		ConnectedMtpDevices devices;
 		if (devices.NumDevices()==0)
@@ -432,6 +430,7 @@ int main(int argc, char *argv[])
 	}
 	else
 	{
+		LIBMTP_Init();
 		std::unique_ptr<MtpDevice> device;
 		ConnectedMtpDevices devices;
 		if (devices.NumDevices()==0)

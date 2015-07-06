@@ -1,4 +1,6 @@
-jmtpfs:
+###Jmtpfs:
+
+##Description
 
 jmtpfs is a FUSE and libmtp based filesystem for accessing MTP (Media Transfer
 Protocol) devices. It was specifically designed for exchaning files between 
@@ -14,61 +16,63 @@ Since it is meant as an Android file transfer utility, and I don't have
 any non-Android MTP devices to test with, playlists and other non-file
 based data are not supported.
 
-Building and installing:
+###Build & Installation
 
-See the INSTALL file.
+These are build directions for OSX
 
-Usage:
+First install [osxfuse](https://osxfuse.github.io/)
 
-Run jmtpfs with a directory as a parameter, and it will mount to that directory
-the first MTP device it finds. You can then access the files on the device as
-if it were a normal disk.
+Then get Homebrew if you don't already have it.
 
-[jason@colossus ~]$ jmtpfs ~/mtp
-Device 0 (VID=04e8 and PID=6860) is a Samsung GT-P7310/P7510/N7000/I9100/Galaxy Tab 7.7/10.1/S2/Nexus/Note.
-Android device detected, assigning default bug flags
-[jason@colossus ~]$ ls ~/mtp
-Internal Storage
-[jason@colossus ~]$ ls ~/mtp/Internal\ Storage/
-Android  burstlyImageCache  DCIM  Music  Notifications  Pictures  testdir
-[jason@colossus ~]$ df -h ~/mtp/Internal\ Storage
-Filesystem      Size  Used Avail Use% Mounted on
-jmtpfs           14G  3.1G   11G  23% /home/jason/mtp
-[jason@colossus ~]$ cd ~/mtp/Internal\ Storage/
-[jason@colossus Internal Storage]$ ls
-Android  burstlyImageCache  DCIM  Music  Notifications  Pictures  testdir
-[jason@colossus Internal Storage]$ cat > test.txt
-Hello Android!
-[jason@colossus Internal Storage]$ ls
-Android            DCIM   Notifications  testdir
-burstlyImageCache  Music  Pictures       test.txt
-[jason@colossus Internal Storage]$ cat test.txt 
-Hello Android!
-[jason@colossus Internal Storage]$ rm test.txt 
-[jason@colossus Internal Storage]$ 
+`brew install` the following:
 
-Pass the -l option will list the attached MTP devices.
+`libmtp`
+`libusb`
+`libmagic`
 
-[jason@colossus ~]$ workspace/jmtpfs/src/jmtpfs -l
-Device 0 (VID=04e8 and PID=6860) is a Samsung GT-P7310/P7510/N7000/I9100/Galaxy Tab 7.7/10.1/S2/Nexus/Note.
-Available devices (busLocation, devNum, productId, vendorId, product, vendor):
-2, 19, 0x6860, 0x04e8, GT-P7310/P7510/N7000/I9100/Galaxy Tab 7.7/10.1/S2/Nexus/Note, Samsung
+Then after `cd`ing to the cloned directory run
 
-You can choose which device to mount with the -device option.
+`./configure`
 
-[jason@colossus ~]$ workspace/jmtpfs/src/jmtpfs -device=2,19 ~/mtp
-Device 0 (VID=04e8 and PID=6860) is a Samsung GT-P7310/P7510/N7000/I9100/Galaxy Tab 7.7/10.1/S2/Nexus/Note.
-Android device detected, assigning default bug flags
-[jason@colossus ~]$ ls ~/mtp
-Internal Storage
+Hopefully there are no errors.
 
-Unmount with fusermount.
+Then run `make`
 
-[jason@colossus ~]$ ls ~/mtp
-Internal Storage
-[jason@colossus ~]$ fusermount -u ~/mtp
-[jason@colossus ~]$ ls ~/mtp
-[jason@colossus ~]$
+And finally
+
+`make install`
+
+This will build the jmtpfs binary and place it in /usr/local/bin.
+
+##Usage:
+
+The way Fuse works is that it builds a virtual file system given a mountpoint (we will use a folder for this purpose)
+
+Let's mount our device to the desktop.
+
+To do this, create a folder called nexus (or whatever you like) inside your desktop (or someother place if you prefer).
+You only have to do this once.
+
+Next run
+
+`jmtpfs -o local <path to created folder>`
+
+Where <path to created folder> is replaced by the posix path. For example:
+
+'jmtpfs -o local ~/Desktop/nexus'
+
+The `-o local` flag creates a local mount so that it appears in the finder sidebar.
+
+You can then access the files on the device as if it were a normal disk.
+
+
+Passing the -l option will list the attached MTP devices.
+
+You can choose which device to mount with the -device option (use the -l option to find the device id)
+
+You can pass -h for help.
+
+Unmounting can be done via the finder (eject) or via the osx standard umount
 
 
 Performance and implementation notes:
