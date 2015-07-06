@@ -77,6 +77,8 @@ If you want to get really fancy you can add a name and icon:
 
 `jmtpfs -o volname="Nexus 5" -o volicon=/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/com.apple.iphone-4-black.icns ~/Desktop/nexus`
 
+Also downloadable (in the releases tab) is a helper application that will automatically run the above using a shell script upon launching the app. 
+
 ##Performance and implementation notes:
 
 Libmtp (and I assume the MTP protocol itself) doesn't support seeking within a 
