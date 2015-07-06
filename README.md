@@ -1,8 +1,8 @@
-#Jmtpfs:
+#Jmtpfs
 
 ##Description
 
-jmtpfs is a FUSE and libmtp based filesystem for accessing MTP (Media Transfer
+Jmtpfs is a FUSE and libmtp based filesystem for accessing MTP (Media Transfer
 Protocol) devices. It was specifically designed for exchaning files between 
 Linux (and Mac OS X) systems and newer Android devices that support MTP but not USB Mass 
 Storage.
@@ -55,29 +55,27 @@ You only have to do this once.
 
 Next run
 
-`jmtpfs -o local <path to created folder>`
+`jmtpfs -o local [path to created folder]`
 
-Where <path to created folder> is replaced by the posix path. For example:
+Where [path to created folder] is replaced by the posix path.
 
-'jmtpfs -o local ~/Desktop/nexus'
+For example: `jmtpfs -o local ~/Desktop/nexus`
 
 The `-o local` flag creates a local mount so that it appears in the finder sidebar.
 
 You can then access the files on the device as if it were a normal disk.
 
+Passing the `-l` option will list the attached MTP devices.
 
-Passing the -l option will list the attached MTP devices.
+You can then choose which device to mount with the `-device` option.
 
-You can choose which device to mount with the -device option (use the -l option to find the device id)
-
-You can pass -h for help.
+You can pass `-h` for help.
 
 Unmounting can be done via the finder (eject) or via the osx standard umount
 
-
 ##Performance and implementation notes:
 
-libmtp (and I assume the MTP protocol itself) doesn't support seeking within a 
+Libmtp (and I assume the MTP protocol itself) doesn't support seeking within a 
 file or partial file reads or writes. You have to fetch or send the entire 
 file. To simluate normal random access files, when a file is opened the entire
 file contents are copied from the device to a temporary file. Reads and writes
@@ -97,3 +95,9 @@ for each file, the data gets copied to the device, read back, and then copied
 to the device again. There is a true rename (but not move) supported by libmtp,
 but this appears to confuse some Android apps, so I don't use it. Image files,
 for example, will disappear from the Gallery if they're renamed.
+
+##Credits
+
+Credits to @kiorky and @JasonFerrara for their work.
+
+This is simply a rehost with some tweaks to the readme and include paths so that it is easier to understand and works out of the box with homebrew.
