@@ -24,7 +24,7 @@
 #include <sys/stat.h>
 #include <unistd.h>
 #include <algorithm>
-#include "/usr/local/Cellar/libmagic/5.22/include/magic.h"
+#include "/usr/local/include/magic.h"
 #include <stdlib.h>
 
 
