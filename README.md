@@ -1,6 +1,6 @@
-###Jmtpfs:
+##Jmtpfs:
 
-##Description
+#Description
 
 jmtpfs is a FUSE and libmtp based filesystem for accessing MTP (Media Transfer
 Protocol) devices. It was specifically designed for exchaning files between 
@@ -16,7 +16,7 @@ Since it is meant as an Android file transfer utility, and I don't have
 any non-Android MTP devices to test with, playlists and other non-file
 based data are not supported.
 
-###Build & Installation
+#Build & Installation
 
 These are build directions for OSX
 
@@ -44,7 +44,7 @@ And finally
 
 This will build the jmtpfs binary and place it in /usr/local/bin.
 
-##Usage:
+#Usage:
 
 The way Fuse works is that it builds a virtual file system given a mountpoint (we will use a folder for this purpose)
 
@@ -75,7 +75,7 @@ You can pass -h for help.
 Unmounting can be done via the finder (eject) or via the osx standard umount
 
 
-Performance and implementation notes:
+#Performance and implementation notes:
 
 libmtp (and I assume the MTP protocol itself) doesn't support seeking within a 
 file or partial file reads or writes. You have to fetch or send the entire 
