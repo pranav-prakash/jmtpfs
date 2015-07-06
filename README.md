@@ -73,6 +73,10 @@ You can pass `-h` for help.
 
 Unmounting can be done via the finder (eject) or via the osx standard umount
 
+If you want to get really fancy you can add a name and icon:
+
+`jmtpfs -o volname="Nexus 5" -o volicon=/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/com.apple.iphone-4-black.icns ~/Desktop/nexus`
+
 ##Performance and implementation notes:
 
 Libmtp (and I assume the MTP protocol itself) doesn't support seeking within a 
