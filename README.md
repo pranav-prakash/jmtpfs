@@ -77,7 +77,11 @@ If you want to get really fancy you can add a name and icon:
 
 `jmtpfs -o volname="Nexus 5" -o volicon=/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/com.apple.iphone-4-black.icns ~/Desktop/nexus`
 
-Also downloadable (in the releases tab) is a helper application that will automatically run the above using a shell script upon launching the app. 
+
+**Alternatively**, in the releases tab is a helper application that is essentially a wrapper application (created with Platypus) around the above shell script. Upon launch, it takes care of automatically creating a folder in the OSX-convetion /Volumes directory and mounts into that created directory. Upon unmount, it deletes that created folder and leaves /Volumes as it was before. It also includes the name and drive icon so the fuse mountpoint can easily be interacted with via Finder.
+
+
+that will automatically run the above using a shell script upon launching the app. 
 
 ##Performance and implementation notes:
 
