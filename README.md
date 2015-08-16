@@ -111,3 +111,7 @@ for example, will disappear from the Gallery if they're renamed.
 Credits to @kiorky and @JasonFerrara for their work.
 
 This is simply a rehost with some tweaks to the readme and include paths so that it is easier to understand and works out of the box with homebrew.
+
+## Other
+
+If you're using this for the purpose of transferring files to android using a fuse file system, also look into adbfs which is slightly more stable
