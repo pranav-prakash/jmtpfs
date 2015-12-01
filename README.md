@@ -2,19 +2,13 @@
 
 ##Description
 
-Jmtpfs is a FUSE and libmtp based filesystem for accessing MTP (Media Transfer
-Protocol) devices. It was specifically designed for exchaning files between 
-Linux (and Mac OS X) systems and newer Android devices that support MTP but not USB Mass 
-Storage.
+A mtp over FUSE virtual filesystem ported to macOS. 
 
-The goal is to create a well behaved filesystem, allowing tools like find and
-rsync to work as expected. MTP file types are set automatically based on file
-type detection using libmagic. Setting the file appears to be necessary for 
-some Android apps, like  Gallery, to be able to find and use the files.
-  
-Since it is meant as an Android file transfer utility, and I don't have
-any non-Android MTP devices to test with, playlists and other non-file
-based data are not supported.
+Allows you to use MTP (media transfer protocol) through libmtp to transfer files to android
+devices that do not support UMS (anything > 4.4).
+
+As mounting is accomplished through FUSE, the device should be accessible both from the finder and
+any command line utility.
 
 ##Build & Installation
 
@@ -108,9 +102,7 @@ for example, will disappear from the Gallery if they're renamed.
 
 ##Credits
 
-Credits to @kiorky and @JasonFerrara for their work.
-
-This is simply a rehost with some tweaks to the readme and include paths so that it is easier to understand and works out of the box with homebrew.
+Credits to @kiorky and @JasonFerrara for their initial work.
 
 ## Other
 
