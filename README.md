@@ -77,6 +77,12 @@ If you want to get really fancy you can add a name and icon:
 
 that will automatically run the above using a shell script upon launching the app. 
 
+##Uninstalling
+
+The only thing created is the binary in `/usr/local/bin/jmtpfs`
+
+You can either delete this manually or run `make uninstall` which does the same thing for you.
+
 ##Performance and implementation notes:
 
 Libmtp (and I assume the MTP protocol itself) doesn't support seeking within a 
